@@ -95,9 +95,6 @@ class LotteryController extends Controller
             return $this->sendError('No users on this match.', [], 400);
         }
 
-
-
-
         $match->is_finished = true;
         $match->save();
 
@@ -120,7 +117,6 @@ class LotteryController extends Controller
 
         $validator = Validator::make($input, $rules);
 
-
         if ($validator->fails()) {
             return $this->sendError('Error validation', $validator->errors());
         }
@@ -129,21 +125,15 @@ class LotteryController extends Controller
         $success['match_id'] = $match->id;
 
         return $this->sendResponse($success, 'Match created successfully');
-
-
     }
 
     public function games(): JsonResponse
     {
-
         $gamesWithMatches = LotteryGame::with(['lotteryGameMatches' => function ($query) {
             $query->orderBy('start_date')->orderBy('start_time');
         }])->paginate(10);
 
         $success['games'] = $gamesWithMatches;
         return $this->sendResponse($success, 'Lottery games');
-
     }
-
-
 }
