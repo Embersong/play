@@ -11,7 +11,9 @@
 Настроить файл .ENV в соответствии с docker-compose.yml
 Указать случайную строку для JWT_SECRET
 
-В контейнере php-fpm запустить миграции
+В контейнере php-fpm выполнить
+`composer install`
+и запустить миграции
 `php artisan migrate:fresh --seed`
 
 Коллекция запросов для postman в папке deploy
