@@ -18,8 +18,8 @@ return new class extends Migration
             $table->boolean('is_finished')->default(false);
             $table->unsignedBigInteger('winner_id')->nullable();
             $table->unsignedBigInteger('game_id');
-            $table->foreign('winner_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('game_id')->references('id')->on('lottery_games')->onDelete('cascade');
+            $table->foreign('winner_id')->references('id')->on('users')->nullOnDelete();
+            $table->foreign('game_id')->references('id')->on('lottery_games')->cascadeOnDelete();
             $table->timestamps();
         });
     }
