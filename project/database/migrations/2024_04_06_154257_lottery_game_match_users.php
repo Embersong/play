@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('lottery_game_match_id');
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('lottery_game_match_id')->references('id')->on('lottery_game_matches')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreign('lottery_game_match_id')->references('id')->on('lottery_game_matches')->nullOnDelete();;
 
             $table->unique(['user_id', 'lottery_game_match_id']);
             $table->timestamps();
